@@ -39,6 +39,7 @@ ramm
 Sample Output 2
 ram
 
+
 Here the message characters are compressed based on each digit of the key.
  */
 import java.io.*; // for handling input/output
