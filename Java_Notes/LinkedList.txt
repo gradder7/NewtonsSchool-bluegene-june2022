@@ -1,0 +1,125 @@
+/*
+->Data Structures -> some kind of mechanism or frame or an infra that is used to manage Data(storing,accesing,modifing(update and delete)).
+
+1-> Linked List-> 
+List-> orderly storing data, serial orderd data.
+Linked list-> is basically a series of data conneted togeather in one direction.
+
+|->|->|->|->|->|->|->|->|
+^          ^
+|(data)    | (linking to next data)/(refernce to the next box)
+ 
+ ex->
+3-->2-->4-->1-->
+one way road-->
+we can only move in one direction
+Basic components of Linked List looks like->
+ _______
+|       |--->  
+|_______|
+
+if we have lot of these components with me we can create link list.
+->So basic strucrure is Node it has two things->
+data
+nextNode(refernce to next Node)
+
+we can create a class for this->
+class Node{
+    int data;
+    Node nextNode;
+}
+-> one obj of this class resembles a basic component or Node
+-> if we have multiple obj of node, we have multiple nodes and create the list.
+
+-> basic operation List required (read(print), write(add),delete(remove)).
+-> the start of list called head and end is the last element is added.
+-> We have to traverse to the end then add the node to end.
+
+*/
+
+// 
+class Main{
+    public static void main(String[] args){
+        MyCustomeList myList = new MyCustomeList();
+        //if list is null
+        myList.print();
+
+        myList.add(5);
+        myList.print();
+
+        myList.delete(5);
+        myList.print();
+
+
+    }
+}
+
+class MyCustomeList{
+     Node head;
+     public void add(int data){
+         Node newNode =new Node(data);// creating node
+         if(head==null){
+            head=newNode;
+         }
+         else{
+             //list is not empty
+             Node temp =head; //make temp/dulicate  to make head same
+             while(temp.nextNode!=null){ // reach last node
+             temp=temp.nextNode;
+             }
+             //now head is the last node in the current list
+             temp.nextNode=newNode;
+             
+         }
+     }
+     public void print(){
+         if(head==null){
+             System.out.println("List is empty");
+             return;
+         }
+          Node temp =head; //make temp/dulicate  to make head same
+             while(temp!=null){ // surpassing last node
+                 System.out.print(temp.data+" ");
+                 temp=temp.nextNode;
+             }
+             System.out.println("");
+     }
+
+     public void delete(int data){
+         if(head==null){
+             System.out.println("List is empty");
+             return;
+         }
+         if(head.data==data){
+             //first node has the data to be deleted.
+             head = head.nextNode;
+             System.out.println("deleted"+ data);
+             return;
+         }
+          Node temp =head;
+
+         //deletion involves searching than removing. searching involes traversal.
+           while(temp.nextNode!=null){ // reach last node
+                 if(temp.nextNode.data==data){
+                    // search complete
+                    temp.nextNode=temp.nextNode.nextNode;
+                    // 1->2->3
+                    System.out.println("deleted "+ data);
+                    return;
+                 }
+                 else{
+                     temp=temp.nextNode;
+                 }
+             }
+             System.out.println(data+ " not present");
+     }
+}
+
+class Node{
+    public int data;
+    public Node nextNode;
+
+    public Node(int data){
+        this.data=data;
+    }
+}
