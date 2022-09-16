@@ -21,7 +21,7 @@ class Main {
                       }
                       mean= (double)sqr/size;
                       root= Math.sqrt(mean);
-                      System.out.println("%.6f",root);
+                      System.out.printf("%.6f",root);
 
     }
 }
